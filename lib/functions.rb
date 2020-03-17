@@ -9,6 +9,10 @@ class Functions
             str.split(',').each do
                 |a|
                 if a.match(/telegram_id/)
+                    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                    puts user_to_validate
+                    puts a.split(':')[1].gsub(/"/, '')
+                    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                     return true if a.split(':')[1].gsub(/"/, '') == user_to_validate
                 end
             end
