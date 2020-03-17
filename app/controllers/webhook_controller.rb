@@ -4,6 +4,11 @@ class WebhookController < ApplicationController
     def index
         user_id = params[:message][:from][:id]
         message = params[:message][:text]
-        send_message = TelegramFunctions.send_message(user_id, message)
+        if message[0] == "/"
+            # Is a command
+        else
+            # Is a normal message
+            send_message = TelegramFunctions::send_message(user_id, message)
+        end
     end
 end
