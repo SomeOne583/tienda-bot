@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :admins
+  # resources :admins
   # resources :receipts
   # resources :suppliers
   # resources :appointments

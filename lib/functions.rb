@@ -1,9 +1,11 @@
 class Functions
     def self.validate_user(user_to_validate)
-        admins = Faraday.get(
-            "https://tienda-bot.herokuapp.com/admins"
-        )
-        admins.body.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
+        # admins = Faraday.get(
+        #     "https://tienda-bot.herokuapp.com/admins"
+        # )
+        admins = Admin.all
+        admins = ApplicationController::render json: admins
+        admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
             |admin_str|
             admin_str.split(',').each do
                 |admin_pairs|
@@ -29,9 +31,7 @@ class Functions
         #     "https://tienda-bot.herokuapp.com/#{table_name}"
         # )
         # return response.body
-        @clients = Client.all
-        puts @clients
-
-        ApplicationController::render json: @clients
+        clients = Client.all
+        ApplicationController::render json: clients
     end
 end
