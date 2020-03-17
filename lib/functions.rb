@@ -1,7 +1,7 @@
 class Functions
     def self.validate_user(user_to_validate)
         admins = Faraday.get(
-            "https://tienda-bot.herokuapp.com/admin"
+            "https://tienda-bot.herokuapp.com/admins"
         )
         admins.body.each do
             |admin|
