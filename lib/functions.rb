@@ -13,4 +13,5 @@ class Functions
             "https://tienda-bot.herokuapp.com/#{table_name}"
         )
         return response.body
+    end
 end
