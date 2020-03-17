@@ -3,11 +3,16 @@ class Functions
         admins = Faraday.get(
             "https://tienda-bot.herokuapp.com/admins"
         )
+        puts admins.body
         admins.body.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
             |str|
             str.split(',').each do
                 |a|
                 if a.match(/telegram_id/)
+                    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                    puts user_to_validate
+                    puts a.split(':')[1]
+                    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                     return true if a.split(':')[1] == user_to_validate
                 end
             end
