@@ -5,9 +5,18 @@ class Functions
         # )
         admins = Admin.all
         admins = ApplicationController::render json: admins
-        admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
+        # admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
+        #     |admin_str|
+        #     admin_str.split(',').each do
+        #         |admin_pairs|
+        #         if admin_pairs.match?(/telegram_id/)
+        #             return true if admin_pairs.split(':')[1].match?(/#{user_to_validate}/)
+        #         end
+        #     end
+        # end
+        admins.gsub(/[\[\]]/, '').split(/},{/).each do
             |admin_str|
-            admin_str.split(',').each do
+            admin_str.gsub(/[\{\}]/).split(',').each do
                 |admin_pairs|
                 if admin_pairs.match?(/telegram_id/)
                     return true if admin_pairs.split(':')[1].match?(/#{user_to_validate}/)
