@@ -3,6 +3,6 @@ class WebhookController < ApplicationController
 
     def index
         user_id = params[:message][:from][:id]
-        response = Faraday.post("https://api.telegram.org/bot#{ENV['TIENDA_TOKEN']}/sendMessage", {"chat_id": user_id, "text": params}, "Content-Type" => "application/json")
+        response = Faraday.post("https://api.telegram.org/bot#{ENV['TIENDA_TOKEN']}/sendMessage", {"chat_id": user_id, "text": params.to_s}, "Content-Type" => "application/json")
     end
 end
