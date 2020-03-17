@@ -52,6 +52,7 @@ class Functions
     end
 
     def self.add_to_table(table, values)
+        self.logger(values)
         case table
         when "admins"
             table = Admin.create(values)
@@ -75,7 +76,8 @@ class Functions
 
     def self.logger(text)
         puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        puts text
+        print text
+        puts ""
         puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     end
 end
