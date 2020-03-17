@@ -10,9 +10,9 @@ class Functions
                 |a|
                 if a.match(/telegram_id/)
                     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-                    puts user_to_validate[-1]
-                    puts a.split(':')[1].gsub(/"/, '')[-1]
-                    puts a.split(':')[1].gsub(/"/, '') == user_to_validate
+                    puts user_to_validate
+                    puts a.split(':')[1].gsub(/"/, '')
+                    puts a.match(/#{user_to_validate}/)
                     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                     return true if a.split(':')[1].gsub(/"/, '') == user_to_validate
                 end
