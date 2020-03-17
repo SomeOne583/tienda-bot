@@ -61,22 +61,22 @@ class Functions
     def self.add_to_table(table, values)
         case table
         when "admins"
-            table = Admin.create(eval(@@ADMIN_FORMAT % values))
+            row = Admin.create(eval(@@ADMIN_FORMAT % values))
         when "appointments"
-            table = Appointment.create(eval(@@APPOINTMENT_FORMAT % values))
+            row = Appointment.create(eval(@@APPOINTMENT_FORMAT % values))
         when "clients"
-            table = Client.create(eval(@@CLIENT_FORMAT % values))
+            row = Client.create(eval(@@CLIENT_FORMAT % values))
         when "employees"
-            table = Employee.create(eval(@@EMPLOYEE_FORMAT % values))
+            row = Employee.create(eval(@@EMPLOYEE_FORMAT % values))
         when "receipts"
-            table = Receipt.create(eval(@@RECEIPT_FORMAT % values))
+            row = Receipt.create(eval(@@RECEIPT_FORMAT % values))
         when "suppliers"
-            table = Supplier.create(eval(@@SUPPLIER_FORMAT % values))
+            row = Supplier.create(eval(@@SUPPLIER_FORMAT % values))
         end
-        if table.save
-            ApplicationController::render json: table, status: :created, location: table
+        if row.save
+            ApplicationController::render json: row, status: :created, location: row
         else
-            ApplicationController::render json: table.errors, status: :unprocessable_entity
+            ApplicationController::render json: row.errors, status: :unprocessable_entity
         end
     end
 
