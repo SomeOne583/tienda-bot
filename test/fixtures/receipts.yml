@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  service: MyString
+  cost: 1.5
+  payment_method: MyString
+  date: 2020-03-16
+  client: one
+
+two:
+  id: 1
+  service: MyString
+  cost: 1.5
+  payment_method: MyString
+  date: 2020-03-16
+  client: two
