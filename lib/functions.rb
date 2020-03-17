@@ -5,7 +5,7 @@ class Functions
         # )
         admins = Admin.all
         admins = ApplicationController::render json: admins
-        puts admins
+        puts admins[0]
         admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
             |admin_str|
             admin_str.split(',').each do
