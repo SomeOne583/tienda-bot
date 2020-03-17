@@ -48,7 +48,7 @@ class Functions
             |row|
             rows << row.gsub(/[\{\}"]/, '')
         end
-        return rows.join('///')
+        return rows.join('\n')
     end
 
     def self.logger(text)
