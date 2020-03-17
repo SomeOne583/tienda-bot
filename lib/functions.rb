@@ -10,18 +10,19 @@ class Functions
         # admins = Faraday.get(
         #     "https://tienda-bot.herokuapp.com/admins"
         # )
-        admins = Admin.all
-        admins = ApplicationController::render json: admins
-        admins.gsub(/[\[\]]/, '').split(/},{/).each do
-            |admin_str|
-            admin_str.gsub(/[\{\}]/, '').split(',').each do
-                |admin_pairs|
-                if admin_pairs.match?(/telegram_id/)
-                    return true if admin_pairs.split(':')[1].match?(/#{user_to_validate}/)
-                end
-            end
-        end
-        return false
+        # admins = Admin.all
+        # admins = ApplicationController::render json: admins
+        # admins.gsub(/[\[\]]/, '').split(/},{/).each do
+        #     |admin_str|
+        #     admin_str.gsub(/[\{\}]/, '').split(',').each do
+        #         |admin_pairs|
+        #         if admin_pairs.match?(/telegram_id/)
+        #             return true if admin_pairs.split(':')[1].match?(/#{user_to_validate}/)
+        #         end
+        #     end
+        # end
+        # return false
+        Admin.find_by telegram_id: user_to_validate ? return true : return false
     end
 
     def self.send_message(message_to, message)
@@ -36,17 +37,17 @@ class Functions
     def self.get_table(table_name)
         case table_name
         when "admins"
-            table = Admin.all
+            table = Admin.order(:id)
         when "appintments"
-            table = Appointment.all
+            table = Appointment.order(:id)
         when "clients"
             table = Client.order(:id)
         when "employees"
-            table = Employee.all
+            table = Employee.order(:id)
         when "receipts"
-            table = Receipt.all
+            table = Receipt.order(:id)
         when "suppliers"
-            table = Supplier.all
+            table = Supplier.order(:id)
         end
         rows_as_string = ApplicationController::render json: table
         rows_as_string_to_rows(rows_as_string)
