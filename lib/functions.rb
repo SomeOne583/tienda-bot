@@ -25,9 +25,11 @@ class Functions
     end
 
     def self.get_table(table_name)
-        response = Faraday.get(
-            "https://tienda-bot.herokuapp.com/#{table_name}"
-        )
-        return response.body
+        # response = Faraday.get(
+        #     "https://tienda-bot.herokuapp.com/#{table_name}"
+        # )
+        # return response.body
+        @clients = Client.all
+        render json: @clients
     end
 end
