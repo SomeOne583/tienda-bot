@@ -1,7 +1,7 @@
-updater = Updater.new
 
 class WebhookController < ApplicationController
     # https://api.telegram.org/bot#{ENV['TIENDA_TOKEN']}/METHOD_NAME
+    updater = Updater.new
     
     def index
         user_id = params[:message][:from][:id]
