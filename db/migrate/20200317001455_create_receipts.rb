@@ -1,7 +1,6 @@
 class CreateReceipts < ActiveRecord::Migration[6.0]
   def change
     create_table :receipts do |t|
-      t.integer :id, :primary_key => true
       t.string :service
       t.float :cost
       t.string :payment_method
