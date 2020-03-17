@@ -5,7 +5,6 @@ class Functions
         # )
         admins = Admin.all
         admins = ApplicationController::render json: admins
-        puts admins[0]
         admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
             |admin_str|
             admin_str.split(',').each do
@@ -42,9 +41,17 @@ class Functions
         when "suppliers"
             table = Supplier.all
         end
-        rows = ApplicationController::render json: table
+        rows = []
+        rows_as_string = ApplicationController::render json: table
         # [{"id":1,"first_name":"Jan","contact":"8115681823","created_at":"2020-03-17T18:40:23.557Z","updated_at":"2020-03-17T18:40:23.557Z"}]
-
+        rows_as_string.gsub(/[\[\]]/, '').split(/[\{\}]/).each do
+            |row|
+            if row.length > 0
+                rows << row
+            end
+        end
+        puts rows
+        return "Testing"
     end
 
     def self.logger(text)
