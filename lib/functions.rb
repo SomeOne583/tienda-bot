@@ -48,7 +48,29 @@ class Functions
             |row|
             rows << row.gsub(/[\{\}"]/, '')
         end
-        return rows.join('\\n')
+        return rows.join('    ')
+    end
+
+    def self.add_to_table(table, values)
+        case table
+        when "admins"
+            table = Admin.create(values)
+        when "appintments"
+            table = Appointment.create(values)
+        when "clients"
+            table = Client.create(values)
+        when "employees"
+            table = Employee.create(values)
+        when "receipts"
+            table = Receipt.create(values)
+        when "suppliers"
+            table = Supplier.create(values)
+        end
+        if @admin.save
+            render json: @admin, status: :created, location: @admin
+        else
+            render json: @admin.errors, status: :unprocessable_entity
+        end
     end
 
     def self.logger(text)

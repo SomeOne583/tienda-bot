@@ -16,7 +16,14 @@ class WebhookController < ApplicationController
         if message[0] == "/"
             # Is a command
             message = message[1..]
-            message = Functions::get_table(message)
+            if message.match?(/\s/)
+                message_args = message.split(/\s/)
+                table = message_args[0]
+                values = message_args[1].split(/,/)
+                message = Functions::add_to_table(table, values)
+            else
+                message = Functions::get_table(message)
+            end
             send_message = Functions::send_message(user_id, message)
             Functions::logger(send_message)
         else
