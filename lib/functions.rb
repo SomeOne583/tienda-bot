@@ -46,9 +46,9 @@ class Functions
         # [{"id":1,"first_name":"Jan","contact":"8115681823","created_at":"2020-03-17T18:40:23.557Z","updated_at":"2020-03-17T18:40:23.557Z"}]
         rows_as_string.gsub(/[\[\]]/, '').split(/},{/).each do
             |row|
-            rows << row.gsub(/[\{\}]/, '')
+            rows << row.gsub(/[\{\}"]/, '')
         end
-        return rows.join('\n')
+        return rows.join('///')
     end
 
     def self.logger(text)
