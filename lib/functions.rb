@@ -30,6 +30,8 @@ class Functions
         # )
         # return response.body
         @clients = Client.all
-        render json: @clients
+        puts @clients
+
+        AplicationController::render json: @clients
     end
 end
