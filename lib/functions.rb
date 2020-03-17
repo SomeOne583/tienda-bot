@@ -73,10 +73,10 @@ class Functions
         when "suppliers"
             table = Supplier.create(eval(@@SUPPLIER_FORMAT % values))
         end
-        if @admin.save
-            render json: @admin, status: :created, location: @admin
+        if table.save
+            ApplicationController::render json: table, status: :created, location: table
         else
-            render json: @admin.errors, status: :unprocessable_entity
+            ApplicationController::render json: table.errors, status: :unprocessable_entity
         end
     end
 
