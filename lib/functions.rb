@@ -48,14 +48,8 @@ class Functions
         when "suppliers"
             table = Supplier.all
         end
-        rows = []
         rows_as_string = ApplicationController::render json: table
-        # [{"id":1,"first_name":"Jan","contact":"8115681823","created_at":"2020-03-17T18:40:23.557Z","updated_at":"2020-03-17T18:40:23.557Z"}]
-        rows_as_string.gsub(/[\[\]]/, '').split(/},{/).each do
-            |row|
-            rows << row.gsub(/[\{\}"]/, '')
-        end
-        return rows.join('    ')
+        rows_as_string_to_rows(rows_as_string)
     end
 
     def self.add_to_table(table, values)
@@ -75,11 +69,20 @@ class Functions
         end
         if row.save
             # ApplicationController::render json: row, status: :created, location: row
-            ApplicationController::render json: row
+            rows_as_string_to_rows(ApplicationController::render json: row)
         else
             # ApplicationController::render json: row.errors, status: :unprocessable_entity
-            ApplicationController::render json: row.errors
+            rows_as_string_to_rows(ApplicationController::render json: row.errors)
         end
+    end
+
+    def self.rows_as_string_to_rows(rows_as_string)
+        rows = []
+        rows_as_string.gsub(/[\[\]]/, '').split(/},{/).each do
+            |row|
+            rows << row.gsub(/[\{\}"]/, '')
+        end
+        return rows.join('    ')
     end
 
     def self.logger(text)
