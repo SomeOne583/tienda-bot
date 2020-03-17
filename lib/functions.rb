@@ -3,7 +3,7 @@ class Functions
         admins = Faraday.get(
             "https://tienda-bot.herokuapp.com/admin"
         )
-        admins.each do
+        admins.body.each do
             |admin|
             return true if admin['telegram_id'] == user_to_validate
         end
