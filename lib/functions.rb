@@ -5,15 +5,6 @@ class Functions
         # )
         admins = Admin.all
         admins = ApplicationController::render json: admins
-        # admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
-        #     |admin_str|
-        #     admin_str.split(',').each do
-        #         |admin_pairs|
-        #         if admin_pairs.match?(/telegram_id/)
-        #             return true if admin_pairs.split(':')[1].match?(/#{user_to_validate}/)
-        #         end
-        #     end
-        # end
         admins.gsub(/[\[\]]/, '').split(/},{/).each do
             |admin_str|
             admin_str.gsub(/[\{\}]/, '').split(',').each do
@@ -53,11 +44,9 @@ class Functions
         rows = []
         rows_as_string = ApplicationController::render json: table
         # [{"id":1,"first_name":"Jan","contact":"8115681823","created_at":"2020-03-17T18:40:23.557Z","updated_at":"2020-03-17T18:40:23.557Z"}]
-        rows_as_string.gsub(/[\[\]]/, '').split(/[\{\}]/).each do
+        rows_as_string.gsub(/[\[\]]/, '').split(/},{/).each do
             |row|
-            if row.length > 0
-                rows << row
-            end
+            rows << row.gsub(/[\{\}]/, '')
         end
         print rows
         return "Testing"
