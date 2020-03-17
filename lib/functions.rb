@@ -17,6 +17,7 @@ class Functions
                 end
             end
         end
+        puts "I'll return false"
         # admins.body.each do
         #     |admin|
         #     return true if admin['telegram_id'] == user_to_validate
