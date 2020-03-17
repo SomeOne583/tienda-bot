@@ -74,9 +74,11 @@ class Functions
             row = Supplier.create(eval(@@SUPPLIER_FORMAT % values))
         end
         if row.save
-            ApplicationController::render json: row, status: :created, location: row
+            # ApplicationController::render json: row, status: :created, location: row
+            ApplicationController::render json: row
         else
-            ApplicationController::render json: row.errors, status: :unprocessable_entity
+            # ApplicationController::render json: row.errors, status: :unprocessable_entity
+            ApplicationController::render json: row.errors
         end
     end
 
