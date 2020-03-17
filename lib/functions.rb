@@ -16,7 +16,7 @@ class Functions
         # end
         admins.gsub(/[\[\]]/, '').split(/},{/).each do
             |admin_str|
-            admin_str.gsub(/[\{\}]/).split(',').each do
+            admin_str.gsub(/[\{\}]/, '').split(',').each do
                 |admin_pairs|
                 if admin_pairs.match?(/telegram_id/)
                     return true if admin_pairs.split(':')[1].match?(/#{user_to_validate}/)
