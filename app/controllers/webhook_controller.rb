@@ -6,9 +6,15 @@ class WebhookController < ApplicationController
         message = params[:message][:text]
         if message[0] == "/"
             # Is a command
+            message = message[1..]
+            message = Functions::get_table(message)
+            send_message = Functions::send_message(user_id, message)
+            puts send_message
         else
             # Is a normal message
-            send_message = TelegramFunctions::send_message(user_id, message)
+            message = "Por favor usa uno de los comandos que tiene disponibles el bot"
+            send_message = Functions::send_message(user_id, message)
+            puts send_message
         end
     end
 end
