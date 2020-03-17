@@ -61,17 +61,17 @@ class Functions
     def self.add_to_table(table, values)
         case table
         when "admins"
-            table = Admin.create(@@ADMIN_FORMAT % values)
+            table = Admin.create(eval(@@ADMIN_FORMAT % values))
         when "appointments"
-            table = Appointment.create(@@APPOINTMENT_FORMAT % values)
+            table = Appointment.create(eval(@@APPOINTMENT_FORMAT % values))
         when "clients"
-            table = Client.create(@@CLIENT_FORMAT % values)
+            table = Client.create(eval(@@CLIENT_FORMAT % values))
         when "employees"
-            table = Employee.create(@@EMPLOYEE_FORMAT % values)
+            table = Employee.create(eval(@@EMPLOYEE_FORMAT % values))
         when "receipts"
-            table = Receipt.create(@@RECEIPT_FORMAT % values)
+            table = Receipt.create(eval(@@RECEIPT_FORMAT % values))
         when "suppliers"
-            table = Supplier.create(@@SUPPLIER_FORMAT % values)
+            table = Supplier.create(eval(@@SUPPLIER_FORMAT % values))
         end
         if @admin.save
             render json: @admin, status: :created, location: @admin
