@@ -1,5 +1,5 @@
-class WeebhookFunctions
-    def send_message(message_to, message)
+class TelegramFunctions
+    def self.send_message(message_to, message)
         response = Faraday.post(
             "https://api.telegram.org/bot#{ENV['TIENDA_TOKEN']}/sendMessage",
             'chat_id': message_to,
