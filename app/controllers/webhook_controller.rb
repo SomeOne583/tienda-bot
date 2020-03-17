@@ -1,9 +1,18 @@
 class WebhookController < ApplicationController
     # https://api.telegram.org/bot#{ENV['TIENDA_TOKEN']}/METHOD_NAME
-    
-    def index
+    def validation
         user_id = params[:message][:from][:id]
         message = params[:message][:text]
+        if Functions::validate_user(user_id)
+            index(user_id, message)
+        else
+            Functions::send_message(user_id, "No estas autorizado")
+        end
+    end
+
+    private
+
+    def index(user_id, message)
         if message[0] == "/"
             # Is a command
             message = message[1..]
