@@ -7,7 +7,7 @@ class Functions
             |str|
             str.split(',').each do
                 |a|
-                if a.match(/first_name/)
+                if a.match(/telegram_id/)
                     return true if a.split(':')[1] == user_to_validate
                 end
             end
