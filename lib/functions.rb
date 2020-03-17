@@ -1,4 +1,11 @@
 class Functions
+    @@ADMIN_FORMAT = "{id: %i, telegram_id: '%s'}"
+    @@APPOINTMENT_FORMAT = "{id: %i, initial_date: '%s', final_date: '%s', client_id: %i}"
+    @@CLIENT_FORMAT = "{id: %i, first_name: '%s', contact: '%s'}"
+    @@EMPLOYEE_FORMAT = "{id: %i, last_name: '%s', first_name: '%s', hours: %f, salary: %f, cellphone: '%s'}"
+    @@RECEIPT_FORMAT = "{id: %i, service: '%s', cost: %f, payment_method: '%s', date: '%s', client_id: %i}"
+    @@SUPPLIER_FORMAT = "{id: %i, name: '%s', contact: '%s'}"
+
     def self.validate_user(user_to_validate)
         # admins = Faraday.get(
         #     "https://tienda-bot.herokuapp.com/admins"
@@ -52,20 +59,19 @@ class Functions
     end
 
     def self.add_to_table(table, values)
-        self.logger(values)
         case table
         when "admins"
-            table = Admin.create(values)
-        when "appintments"
-            table = Appointment.create(values)
+            table = Admin.create(@@ADMIN_FORMAT % values)
+        when "appointments"
+            table = Appointment.create(@@APPOINTMENT_FORMAT % values)
         when "clients"
-            table = Client.create(values)
+            table = Client.create(@@CLIENT_FORMAT % values)
         when "employees"
-            table = Employee.create(values)
+            table = Employee.create(@@EMPLOYEE_FORMAT % values)
         when "receipts"
-            table = Receipt.create(values)
+            table = Receipt.create(@@RECEIPT_FORMAT % values)
         when "suppliers"
-            table = Supplier.create(values)
+            table = Supplier.create(@@SUPPLIER_FORMAT % values)
         end
         if @admin.save
             render json: @admin, status: :created, location: @admin
