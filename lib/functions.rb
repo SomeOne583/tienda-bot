@@ -50,7 +50,7 @@ class Functions
                 rows << row
             end
         end
-        puts rows
+        print rows
         return "Testing"
     end
 
