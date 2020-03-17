@@ -32,6 +32,6 @@ class Functions
         @clients = Client.all
         puts @clients
 
-        AplicationController::render json: @clients
+        ApplicationController::render json: @clients
     end
 end
