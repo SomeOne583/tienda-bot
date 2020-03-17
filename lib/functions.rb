@@ -12,6 +12,7 @@ class Functions
                     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                     puts user_to_validate
                     puts a.split(':')[1].gsub(/"/, '')
+                    puts a.split(':')[1].gsub(/"/, '') == user_to_validate
                     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
                     return true if a.split(':')[1].gsub(/"/, '') == user_to_validate
                 end
