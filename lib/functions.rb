@@ -40,7 +40,7 @@ class Functions
         when "appintments"
             table = Appointment.all
         when "clients"
-            table = Client.all
+            table = Client.order(:id)
         when "employees"
             table = Employee.all
         when "receipts"
