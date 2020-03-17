@@ -18,12 +18,12 @@ class WebhookController < ApplicationController
             message = message[1..]
             message = Functions::get_table(message)
             send_message = Functions::send_message(user_id, message)
-            puts send_message
+            Functions::logger(send_message)
         else
             # Is a normal message
             message = "Por favor usa uno de los comandos que tiene disponibles el bot"
             send_message = Functions::send_message(user_id, message)
-            puts send_message
+            Functions::logger(send_message)
         end
     end
 end

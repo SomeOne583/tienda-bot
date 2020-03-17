@@ -5,6 +5,7 @@ class Functions
         # )
         admins = Admin.all
         admins = ApplicationController::render json: admins
+        puts admins
         admins.gsub(/[\[\]]/, '').split(/[\{\}]/).each do 
             |admin_str|
             admin_str.split(',').each do
@@ -27,11 +28,28 @@ class Functions
     end
 
     def self.get_table(table_name)
-        # response = Faraday.get(
-        #     "https://tienda-bot.herokuapp.com/#{table_name}"
-        # )
-        # return response.body
-        clients = Client.all
-        ApplicationController::render json: clients
+        case table_name
+        when "admins"
+            table = Admin.all
+        when "appintments"
+            table = Appointment.all
+        when "clients"
+            table = Client.all
+        when "employees"
+            table = Employee.all
+        when "receipts"
+            table = Receipt.all
+        when "suppliers"
+            table = Supplier.all
+        end
+        rows = ApplicationController::render json: table
+        # [{"id":1,"first_name":"Jan","contact":"8115681823","created_at":"2020-03-17T18:40:23.557Z","updated_at":"2020-03-17T18:40:23.557Z"}]
+
+    end
+
+    def self.logger(text)
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        puts text
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     end
 end
