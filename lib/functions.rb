@@ -27,6 +27,7 @@ class Functions
             return true
         else
             return false
+        end
     end
 
     def self.send_message(message_to, message)
