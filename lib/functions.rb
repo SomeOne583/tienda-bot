@@ -57,7 +57,7 @@ class Functions
             rows_as_string = ApplicationController::render json: table
             rows_as_string_to_rows(rows_as_string)
         else
-            "Vacio"
+            return "Vacio"
         end
     end
 
