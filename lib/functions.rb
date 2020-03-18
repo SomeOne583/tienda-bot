@@ -7,9 +7,6 @@ class Functions
     @@SUPPLIER_FORMAT = "{id: %i, name: '%s', contact: '%s'}"
 
     def self.validate_user(user_to_validate)
-        # admins = Faraday.get(
-        #     "https://tienda-bot.herokuapp.com/admins"
-        # )
         # admins = Admin.all
         # admins = ApplicationController::render json: admins
         # admins.gsub(/[\[\]]/, '').split(/},{/).each do
@@ -78,10 +75,10 @@ class Functions
         end
         if row.save
             # ApplicationController::render json: row, status: :created, location: row
-            rows_as_string_to_rows(ApplicationController::render json: row)
+            return rows_as_string_to_rows(ApplicationController::render json: row)
         else
             # ApplicationController::render json: row.errors, status: :unprocessable_entity
-            rows_as_string_to_rows(ApplicationController::render json: row.errors)
+            return rows_as_string_to_rows(ApplicationController::render json: row.errors)
         end
     end
 
