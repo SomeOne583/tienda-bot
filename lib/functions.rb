@@ -22,7 +22,11 @@ class Functions
         #     end
         # end
         # return false
-        return Admin.find_by telegram_id: user_to_validate ? true : false
+        puts Admin.find_by telegram_id: user_to_validate
+        if Admin.find_by telegram_id: user_to_validate
+            return true
+        else
+            return false
     end
 
     def self.send_message(message_to, message)

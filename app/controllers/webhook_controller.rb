@@ -1,6 +1,7 @@
 class WebhookController < ApplicationController
     # https://api.telegram.org/bot#{ENV['TIENDA_TOKEN']}/METHOD_NAME
     def validation
+        puts params
         user_id = params[:message][:from][:id]
         message = params[:message][:text]
         if Functions::validate_user(user_id)
