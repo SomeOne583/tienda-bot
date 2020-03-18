@@ -1,7 +1,7 @@
 class Functions
     @@ADMIN_FORMAT = "{id: %i, telegram_id: '%s'}"
     @@APPOINTMENT_FORMAT = "{id: %i, initial_date: '%s', final_date: '%s', client_id: %i}"
-    @@CLIENT_FORMAT = "{id: %i, first_name: '%s', contact: '%s'}"
+    @@CLIENT_FORMAT = "{first_name: '%s', contact: '%s'}"
     @@EMPLOYEE_FORMAT = "{id: %i, last_name: '%s', first_name: '%s', hours: %f, salary: %f, cellphone: '%s'}"
     @@RECEIPT_FORMAT = "{id: %i, service: '%s', cost: %f, payment_method: '%s', date: '%s', client_id: %i}"
     @@SUPPLIER_FORMAT = "{id: %i, name: '%s', contact: '%s'}"
