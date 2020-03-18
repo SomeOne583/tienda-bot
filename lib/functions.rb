@@ -22,7 +22,6 @@ class Functions
         #     end
         # end
         # return false
-        puts Admin.find_by telegram_id: user_to_validate
         if Admin.find_by telegram_id: user_to_validate
             return true
         else
