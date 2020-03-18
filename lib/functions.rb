@@ -53,8 +53,12 @@ class Functions
         when "suppliers"
             table = Supplier.order(:id)
         end
-        rows_as_string = ApplicationController::render json: table
-        rows_as_string_to_rows(rows_as_string)
+        if table
+            rows_as_string = ApplicationController::render json: table
+            rows_as_string_to_rows(rows_as_string)
+        else
+            "Vacio"
+        end
     end
 
     def self.add_to_table(table, values)
